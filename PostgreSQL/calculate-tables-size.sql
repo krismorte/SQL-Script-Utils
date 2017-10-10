@@ -1,4 +1,4 @@
-/* To find tables size
+/*  Caculates tables size
 
 @author Krisnamourt Filho - krisnamourt_ti@hotmail.com
 */
