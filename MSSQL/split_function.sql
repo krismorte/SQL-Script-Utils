@@ -1,4 +1,7 @@
-/*procedure that's split text*/
+/*procedure that's split text
+
+@author Krisnamourt Filho - krisnamourt_ti@hotmail.com
+*/
 
 create proc split_function
 @ARRAY VARCHAR(8000), @DELIMITADOR VARCHAR(100)

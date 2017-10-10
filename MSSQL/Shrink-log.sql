@@ -1,3 +1,10 @@
+/*
+Script to shrink all log files in all database
+
+
+@author Krisnamourt Filho - krisnamourt_ti@hotmail.com
+*/
+
 declare @cmd nvarchar(4000)
 declare @bd varchar(100)
 declare @file nvarchar(100)

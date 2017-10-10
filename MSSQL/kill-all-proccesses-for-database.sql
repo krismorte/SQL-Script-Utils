@@ -1,5 +1,7 @@
 /*
-kill all processes running in the specific database
+kill all processes in the specific database. Use wisely.
+
+@author Krisnamourt Filho - krisnamourt_ti@hotmail.com
 */
 
 declare @database sysname
