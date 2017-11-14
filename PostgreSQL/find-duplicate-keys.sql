@@ -4,6 +4,6 @@
 */
 
 select <column_key1> ,<column_key2>,count(*)
-from <Search_Table>
+	from <Search_Table>
 	group by <column_key1> ,<column_key2>
 	having count(*) >1
