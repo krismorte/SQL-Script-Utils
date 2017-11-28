@@ -25,8 +25,8 @@ INNER JOIN
 LEFT OUTER JOIN 
     sys.schemas s ON t.schema_id = s.schema_id
 WHERE 
-    t.NAME NOT LIKE 'dt%' 
-    AND t.is_ms_shipped = 0
+    --t.NAME NOT LIKE 'dt%' AND 
+    t.is_ms_shipped = 0
     AND i.OBJECT_ID > 255 
 GROUP BY 
     t.Name, s.Name, p.Rows
