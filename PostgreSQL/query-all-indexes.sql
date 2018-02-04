@@ -3,21 +3,22 @@
 @author Krisnamourt Filho - krisnamourt_ti@hotmail.com
 */
 
-SELECT i.relname as indname,
-       i.relowner as indowner,
-       idx.indrelid::regclass,
-       am.amname as indam,
-       idx.indkey,
-       ARRAY(
-       SELECT pg_get_indexdef(idx.indexrelid, k + 1, true)
-       FROM generate_subscripts(idx.indkey, 1) as k
-       ORDER BY k
-       ) as indkey_names,
-       idx.indexprs IS NOT NULL as indexprs,
-       idx.indpred IS NOT NULL as indpred
-FROM   pg_index as idx
-JOIN   pg_class as i
-ON     i.oid = idx.indexrelid
-JOIN   pg_am as am
-ON     i.relam = am.oid
-where i.relnamespace>100
+select
+    t.relname as table_name,
+    i.relname as index_name,
+    a.attname as column_name
+from
+    pg_class t,
+    pg_class i,
+    pg_index ix,
+    pg_attribute a
+where
+    t.oid = ix.indrelid
+    and i.oid = ix.indexrelid
+    and a.attrelid = t.oid
+    and a.attnum = ANY(ix.indkey)
+    and t.relkind = 'r'
+    --and t.relname like 'test%'
+order by
+    t.relname,
+    i.relname;
