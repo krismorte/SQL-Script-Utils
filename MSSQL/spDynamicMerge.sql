@@ -22,7 +22,7 @@ Assumptions:    - The parameter table exists on both the Source and Target
 ==============================================================================
 */
 
-create PROCEDURE [dbo].[spDynamicMerge]
+alter  PROCEDURE [dbo].[spDynamicMerge]
     @sourceDb VARCHAR(100) ,
 	@targetDb VARCHAR(100) ,
 	@schemaName VARCHAR(100) = 'dbo',
@@ -116,7 +116,9 @@ BEGIN TRANSACTION
     ' WHEN NOT MATCHED BY TARGET ' + CHAR(13) + CHAR(10) +
     'THEN ' + CHAR(13) + CHAR(10) +
        'INSERT (' + @columnListingTarget + ') ' + CHAR(13) + CHAR(10) +
-       'VALUES (' + @columnListingSource + '); '
+       'VALUES (' + @columnListingSource + ')'+
+	'WHEN NOT MATCHED BY SOURCE THEN 
+     DELETE ;'
 
     --select @sqlCommand
     
